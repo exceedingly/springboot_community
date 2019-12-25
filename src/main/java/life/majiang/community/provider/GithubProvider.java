@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSON;
 import life.majiang.community.dto.AccessTokenDTO;
 import life.majiang.community.dto.GithubUser;
 import okhttp3.*;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
@@ -24,6 +26,7 @@ public class GithubProvider {
                 .build();
         try (Response response = client.newCall(request).execute()) {
             String string = response.body().string();
+            System.out.println("12322"+string);
             String token = string.split("&")[0].split("=")[1];
             return token;
         } catch (Exception e) {
@@ -50,5 +53,5 @@ public class GithubProvider {
 
         }
         return null;
-    }
+        }
 }
